@@ -1,6 +1,6 @@
 # minuting-web
 
-- 사내 회의록 관리 협업 
+- 사내 회의록 관리 협업 툴
 
 ## Contributor
 - @yyounghoon (윤영훈)
