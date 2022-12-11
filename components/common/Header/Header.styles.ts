@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { palette } from '../../../pages/utils/palette';
+import { palette } from '../../../lib/palette';
 
 export const headerStyles = css`
   position: sticky;
