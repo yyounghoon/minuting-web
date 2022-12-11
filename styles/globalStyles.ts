@@ -27,7 +27,7 @@ export const GlobalStyles = css`
     line-height: 1.5;
   }
 
-  #root {
+  #__next {
     height: 100%;
   }
 
@@ -122,7 +122,6 @@ export const GlobalStyles = css`
   code,
   kbd,
   samp {
-    font-family: 'EliceDigitalBaeum', 'sans-serif';
     font-size: 1em;
   }
 
@@ -139,16 +138,6 @@ export const GlobalStyles = css`
     transition: border-color 0.15s ease-in-out,
       background-color 0.15s ease-in-out, color 0.15s ease-in-out,
       opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
-  }
-
-  img {
-    vertical-align: top;
-    border-style: none;
-  }
-
-  svg {
-    overflow: hidden;
-    vertical-align: middle;
   }
 
   table {
@@ -292,5 +281,13 @@ export const GlobalStyles = css`
 
   [hidden] {
     display: none !important;
+  }
+
+  .public-space-modal .ant-modal-content {
+    padding: 20px 0;
+  }
+
+  .public-space-modal .ant-modal-title {
+    padding: 0 20px;
   }
 `;

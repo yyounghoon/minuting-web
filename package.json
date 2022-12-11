@@ -10,9 +10,13 @@
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "antd": "^5.0.2",
+    "axios": "^1.2.0",
     "next": "13.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-query": "^3.39.2"
   },
   "devDependencies": {
     "@types/node": "18.11.5",
