@@ -22,3 +22,7 @@ export interface MinutesType {
   updatedAt: string;
 } 
 
+// export interface IPostMinute {
+//   title: string;
+//   contents: string;
+// }
