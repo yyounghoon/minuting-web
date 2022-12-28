@@ -1,3 +1,3 @@
 export const paths = {
-  googleLogin: 'http://bbubbu.me:80/auth/code',
+  googleLogin: 'https://bbubbu.me/auth/code',
 };
