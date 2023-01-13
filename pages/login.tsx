@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '../public/logo.svg';
@@ -7,6 +7,8 @@ import { Button } from 'antd';
 import styled from '@emotion/styled';
 import { GetStaticProps } from 'next';
 import { paths } from '../lib/constants';
+import { useRouter } from 'next/router';
+import { postLogin } from '../lib/api/user';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   return {
@@ -14,7 +16,26 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-function login() {
+function Login() {
+  const router = useRouter();
+  const { code } = router.query;
+
+  useEffect(() => {
+    if (code) {
+      const loginCall = async () => {
+        try {
+          const { accessToken, refreshToken } = await postLogin(code as string);
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('refreshToken', refreshToken);
+          router.replace('/');
+        } catch (e) {
+          console.error('로그인 실패');
+        }
+      };
+      loginCall();
+    }
+  }, [router.query]);
+
   return (
     <>
       <Head>
@@ -30,9 +51,9 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
 
-login.getLayout = function getLayout(page: ReactElement) {
+Login.getLayout = function getLayout(page: ReactElement) {
   return { page };
 };
 
