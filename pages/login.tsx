@@ -27,7 +27,7 @@ function Login() {
           const { accessToken, refreshToken } = await postLogin(code as string);
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', refreshToken);
-          router.replace('/');
+          await router.replace('/');
         } catch (e) {
           console.error('로그인 실패');
         }
