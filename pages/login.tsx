@@ -9,6 +9,7 @@ import { GetStaticProps } from 'next';
 import { paths } from '../lib/constants';
 import { useRouter } from 'next/router';
 import { postLogin } from '../lib/api/user';
+import { setCookie } from '../lib/utils/browserStorage';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   return {
@@ -25,8 +26,8 @@ function Login() {
       const loginCall = async () => {
         try {
           const { accessToken, refreshToken } = await postLogin(code as string);
-          localStorage.setItem('accessToken', accessToken);
-          localStorage.setItem('refreshToken', refreshToken);
+          setCookie('accessToken', accessToken);
+          setCookie('refreshToken', refreshToken);
           await router.replace('/');
         } catch (e) {
           console.error('로그인 실패');

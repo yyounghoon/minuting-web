@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export function middleware(req: NextRequest) {
   const { pathname: targetPathName } = req.nextUrl;
 
-  const token = req.cookies.get('token');
+  const token = req.cookies.get('accessToken');
 
   // 토큰 없고, 이동하려는 경로가 login 페이지가 아닌경우, 로그인 페이지로 이동
   if (!token && targetPathName !== '/login') {
