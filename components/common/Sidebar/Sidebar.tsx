@@ -48,7 +48,7 @@ function Sidebar() {
       </Modal>
       <SidebarGroup>
         {spaceList.map((space) => (
-          <SidebarItem key={space.id} spaceName={space.name} />
+          <SidebarItem spaceId={space.id} spaceName={space.name} />
         ))}
       </SidebarGroup>
       <ButtonBlock>

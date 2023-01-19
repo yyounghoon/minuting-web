@@ -2,9 +2,10 @@ import styled from '@emotion/styled';
 
 type SpaceItemProps = {
   spaceName: string;
+  spaceId: number;
 };
 
-function SpaceItem({ spaceName }: SpaceItemProps) {
+function SpaceItem({ spaceId, spaceName }: SpaceItemProps) {
   return (
     <Block>
       <b>{spaceName}</b>

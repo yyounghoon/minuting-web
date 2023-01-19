@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCookieValue } from '../lib/utils/browserStorage';
 
 export const client = axios.create({
   baseURL: 'https://bbubbu.me',
@@ -8,9 +9,7 @@ export const client = axios.create({
 client.interceptors.request.use(
   function (config) {
     // 요청이 전달되기 전에 작업 수행
-    config.headers!.Authorization = `Bearer ${localStorage.getItem(
-      'accessToken',
-    )}`;
+    config.headers!.Authorization = `Bearer ${getCookieValue('accessToken')}`;
     return config;
   },
   function (error) {

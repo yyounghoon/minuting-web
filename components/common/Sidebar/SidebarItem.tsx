@@ -1,12 +1,24 @@
 import { css } from '@emotion/react';
+import { useRouter } from 'next/router';
 
 type SidebarItemProps = {
+  spaceId: number;
   spaceName: string;
 };
 
-function SidebarItem({ spaceName }: SidebarItemProps) {
+
+function SidebarItem({ spaceId, spaceName }: SidebarItemProps) {
+  const router = useRouter();
+
+
+  const getSpace = (spaceId: number) => {
+    router.push('/space/'+spaceId);
+  };
+
   return (
-    <div css={ItemStyle}>
+    <div 
+      css={ItemStyle} 
+      onClick={() => getSpace(spaceId)}>
       <p>{spaceName}</p>
     </div>
   );
