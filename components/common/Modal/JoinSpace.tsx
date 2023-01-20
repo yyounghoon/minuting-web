@@ -11,7 +11,7 @@ function JoinSpace() {
     <>
       <Block>
         {data.list.map((space) => (
-          <SpaceItem spaceId={space.id} spaceName={space.name} />
+          <SpaceItem key={space.id} spaceId={space.id} spaceName={space.name} />
         ))}
       </Block>
     </>

@@ -41,7 +41,11 @@ function Space() {
       <h1>스페이스 조회</h1>
       <SpaceDashboardDiv>
         {data.list.map((minutes) => (
-          <MinuteItem id={minutes.id} title={minutes.title}></MinuteItem>
+          <MinuteItem
+            key={minutes.id}
+            id={minutes.id}
+            title={minutes.title}
+          ></MinuteItem>
         ))}
         <MinuteItem id={spaceId} title="test"></MinuteItem>
       </SpaceDashboardDiv>
