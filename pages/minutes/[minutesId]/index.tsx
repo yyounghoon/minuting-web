@@ -3,7 +3,9 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import { useGetMinutes } from '../../../lib/query/minutes';
-import { Viewer } from '@toast-ui/react-editor'
+import dynamic from 'next/dynamic';
+
+const Viewer = dynamic(() => import("./Viewer"), { ssr: false });
 
 function Space() {
   const router = useRouter();
