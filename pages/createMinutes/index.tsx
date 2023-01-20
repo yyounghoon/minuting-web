@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import { Button, Form, Input, Radio, Select } from 'antd';
-import MinuteEditor from '../../components/minutes/MinuteEditor';
 import MinuteTitle from '../../components/minutes/MinuteTitle';
 import { postMinute } from '../../lib/api/minutes';
 import { useGetMeInfo } from '../../lib/query/userQuery';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+
+const MinuteEditor = dynamic(() => import("../../components/minutes/MinuteEditor"), { ssr: false });
 
 type CreateFormType = {
   spaceId: number;
