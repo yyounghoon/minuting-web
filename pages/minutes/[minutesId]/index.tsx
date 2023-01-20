@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import { useGetMinutes } from '../../../lib/query/minutes';
+import { Viewer } from '@toast-ui/react-editor'
 
 function Space() {
   const router = useRouter();
@@ -40,9 +41,11 @@ function Space() {
       </Head>
       <h1>회의록 조회</h1>
       <SpaceDashboardDiv>
-        <h2>{title}</h2>
+        <h1>{title}</h1>
         <h3>{createdAt}</h3>
-        <h3>{contents}</h3>
+        <Viewer
+        initialValue={contents}
+      />
       </SpaceDashboardDiv>
     </>
   );
