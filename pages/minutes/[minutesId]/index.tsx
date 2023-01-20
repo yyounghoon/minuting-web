@@ -1,40 +1,37 @@
 import React from 'react';
 import Head from 'next/head';
-
-import MinutesDetail from '../../../components/minutes/MinutesDetail';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
-import { getMinutes } from '../../../lib/query/minutes';
-
-
+import { useGetMinutes } from '../../../lib/query/minutes';
 
 function Space() {
   const router = useRouter();
   const minutesId = Number(router.query.minutesId);
 
-  const { data } = getMinutes(minutesId);
+  const { data } = useGetMinutes(minutesId);
 
   if (!data) return <div>공개된 회의록이 없습니다</div>;
-  
 
   const { id, title, contents, createdAt, updatedAt } = data.value;
 
-  const SpaceDashboardDiv = styled.div`display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  const SpaceDashboardDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-  height: fit-content;
+    height: fit-content;
 
-  background: #ffffff;
-  border-radius: 1.2rem;
+    background: #ffffff;
+    border-radius: 1.2rem;
 
-  padding: 1.5rem 2rem;
-  margin-right: 3rem;
-  margin-top: 3rem;
+    padding: 1.5rem 2rem;
+    margin-right: 3rem;
+    margin-top: 3rem;
 
-  box-shadow: 10px 10px 20px -14px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 10px 10px 20px -14px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 20px -14px rgba(0, 0, 0, 0.75);`;
+    box-shadow: 10px 10px 20px -14px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 20px -14px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 20px -14px rgba(0, 0, 0, 0.75);
+  `;
 
   return (
     <>
@@ -43,9 +40,9 @@ function Space() {
       </Head>
       <h1>회의록 조회</h1>
       <SpaceDashboardDiv>
-          <h2>{title}</h2>
-          <h3>{createdAt}</h3>
-          <h3>{contents}</h3>
+        <h2>{title}</h2>
+        <h3>{createdAt}</h3>
+        <h3>{contents}</h3>
       </SpaceDashboardDiv>
     </>
   );
