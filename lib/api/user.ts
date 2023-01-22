@@ -6,7 +6,9 @@ export const getMeInfo = async () => {
   return response.data;
 };
 
-export const postLogin = async (code: string, type: 'DEV' | 'PROD') => {
-  const response = await client.post(`/auth/login?code=${code}&type=${type}`);
+export const postLogin = async (code: string) => {
+  const response = await client.post(
+    `/auth/login?code=${code}&type=${process.env.NEXT_PUBLIC_LOGIN_TYPE}`,
+  );
   return response.data;
 };
