@@ -47,7 +47,6 @@ function Space() {
             title={minutes.title}
           ></MinuteItem>
         ))}
-        <MinuteItem id={spaceId} title="test"></MinuteItem>
       </SpaceDashboardDiv>
     </>
   );
