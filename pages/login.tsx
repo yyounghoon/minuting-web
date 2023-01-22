@@ -25,7 +25,10 @@ function Login() {
     if (code) {
       const loginCall = async () => {
         try {
-          const { accessToken, refreshToken } = await postLogin(code as string);
+          const { accessToken, refreshToken } = await postLogin(
+            code as string,
+            process.env.NEXT_PUBLIC_LOGIN_TYPE as 'DEV' | 'PROD',
+          );
           setCookie('accessToken', accessToken);
           setCookie('refreshToken', refreshToken);
           await router.replace('/');
