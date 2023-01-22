@@ -7,7 +7,8 @@ function NavList() {
       <NavItem title="HOME" path={'/'} />
       <NavItem title="MY" path={'myPage'} />
       <NavItem title="CREATE" path={'/createMinutes'} />
-      <NavItem title="LIST" path={'/minuteList'} />
+      {/* 현재 광민님 소스 부분 병합 중이어서 주석처리 */}
+      {/* <NavItem title="LIST" path={'/minuteList'} /> */}
     </ul>
   );
 }

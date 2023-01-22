@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { useGetMinutes } from '../../../lib/query/minutes';
 import dynamic from 'next/dynamic';
 
-const Viewer = dynamic(() => import("./Viewer"), { ssr: false });
+const LoadViewer = dynamic(() => import("../../../components/minutes/LoadViewer"), { ssr: false });
 
 function Space() {
   const router = useRouter();
@@ -45,9 +45,8 @@ function Space() {
       <SpaceDashboardDiv>
         <h1>{title}</h1>
         <h3>{createdAt}</h3>
-        <Viewer
-        initialValue={contents}
-      />
+        <LoadViewer 
+          contents={contents}></LoadViewer>
       </SpaceDashboardDiv>
     </>
   );
