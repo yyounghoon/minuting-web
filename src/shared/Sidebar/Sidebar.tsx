@@ -2,30 +2,27 @@ import { SidebarStyles } from './Sidebar.styles';
 import { Button, Modal } from 'antd';
 import SidebarItem from './SidebarItem';
 import styled from '@emotion/styled';
-import { useState } from 'react';
 import { useGetMeInfo } from '../../query/userQuery';
 import { useRouter } from 'next/router';
 import JoinSpace from '../Modal/JoinSpace';
+import useToggle from '../hooks/useToggle';
 
 function Sidebar() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { toggle, setToggle } = useToggle();
   const router = useRouter();
   const { data } = useGetMeInfo();
 
-  const showModal = () => {
-    setIsModalOpen(true);
+  const onModalOpen = () => {
+    setToggle(true);
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
+  const onModalCancel = () => {
+    setToggle(false);
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-  const handleSpace = () => {
-    handleCancel();
-    router.push('/createSpace');
+  const onCreateSpace = () => {
+    onModalCancel();
+    router.push('/space/createSpace');
   };
 
   if (!data) return null;
@@ -37,14 +34,14 @@ function Sidebar() {
       <Modal
         centered
         title="공개된 스페이스 참가"
-        open={isModalOpen}
-        onCancel={handleCancel}
+        open={toggle}
+        onCancel={onModalCancel}
         maskClosable={true}
         footer={null}
         className="public-space-modal"
       >
         <JoinSpace />
-        <CreateSpace onClick={handleSpace}>새 스페이스 생성 +</CreateSpace>
+        <CreateSpace onClick={onCreateSpace}>새 스페이스 생성 +</CreateSpace>
       </Modal>
       <SidebarGroup>
         {spaceList.map((space) => (
@@ -56,7 +53,7 @@ function Sidebar() {
         ))}
       </SidebarGroup>
       <ButtonBlock>
-        <Button type="primary" block onClick={showModal}>
+        <Button type="primary" block onClick={onModalOpen}>
           새 그룹 생성
         </Button>
       </ButtonBlock>
