@@ -1,4 +1,4 @@
-import { client } from '../client';
+import { client } from '../api-config/client';
 import { GetMeInfoType } from '../types';
 
 export const getMeInfo = async () => {

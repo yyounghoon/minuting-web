@@ -3,10 +3,11 @@ import 'antd/dist/reset.css';
 import Head from 'next/head';
 import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from 'react-query';
 import { Global } from '@emotion/react';
 import Layout from '../shared/Layout';
 import { GlobalStyles } from '../styles/globalStyles';
+import { queryClient } from '../api-config/queryClient';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -20,18 +21,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout
     ? (page: ReactElement) => page
     : (page: ReactElement) => <Layout>{page}</Layout>;
-
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-        retry: false,
-      },
-      mutations: {
-        retry: false,
-      },
-    },
-  });
 
   return (
     <>

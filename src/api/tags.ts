@@ -1,4 +1,4 @@
-import { client } from '../client';
+import { client } from '../api-config/client';
 import { GetTagResponse } from '../types/tags';
 
 export const getTags = async () => {

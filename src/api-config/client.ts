@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getCookieValue } from './utils/browserStorage';
+import { getCookieValue } from '../utils/browserStorage';
 
 export const client = axios.create({
   baseURL: 'https://bbubbu.me',

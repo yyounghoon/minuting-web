@@ -1,4 +1,4 @@
-import { client } from '../client';
+import { client } from '../api-config/client';
 import { IPostMinute, MinutesDetailType } from '../types/minutes';
 
 export const getMinutesBySpace = async (spaceId: number) => {

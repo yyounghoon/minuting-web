@@ -1,4 +1,4 @@
-import { client } from '../client';
+import { client } from '../api-config/client';
 import { CreateSpaceType } from '../types/space';
 
 export const postCreateSpace = async (payload: CreateSpaceType) => {
