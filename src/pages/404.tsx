@@ -13,7 +13,7 @@ function NotFound() {
         없습니다. 입력하신 주소가 정확한지 다시 한번 확인해 주세요
       </Description>
       <HomeButton>
-        <Link href="/src/pages">홈으로 이동</Link>
+        <Link href="/">홈으로 이동</Link>
       </HomeButton>
     </Layout404>
   );
