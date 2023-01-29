@@ -48,7 +48,6 @@ const mainStyles = css`
 
   display: flex;
 
-  max-width: 1440px;
   min-width: 1180px;
   padding: 30px;
   margin: 0 auto;
