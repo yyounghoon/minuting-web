@@ -5,7 +5,7 @@ export const GlobalStyles = css`
   *::before,
   *::after {
     box-sizing: border-box;
-    font-family: 'Noto Sans KR', 'sans-serif';
+    font-family: 'Pretendard', 'sans-serif';
   }
 
   * {

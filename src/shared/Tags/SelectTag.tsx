@@ -1,13 +1,12 @@
 import styled from '@emotion/styled';
-import { Divider, Form, Tag } from 'antd';
+import { Divider, Tag } from 'antd';
 import React, { useState } from 'react';
 import { useGetTags } from '../../query/tags';
 import { TagType } from '../../types/tags';
 
-function SelectTag() {
+function SelectTag({ setValue }: { setValue: any }) {
   const [selectedTag, setSelectedTag] = useState<TagType[]>([]);
   const { data: tagData } = useGetTags();
-  const form = Form.useFormInstance();
 
   const isTagSelected = (tag: TagType) => {
     return selectedTag.some((item) => item.id === tag.id);
@@ -15,19 +14,17 @@ function SelectTag() {
 
   const onAddTag = (tag: TagType) => {
     if (isTagSelected(tag)) {
-      console.log('선택된 태그입니다');
       return;
     }
-
+    setValue('tagIdList', [...selectedTag, tag]);
     setSelectedTag((prev) => [...prev, tag]);
-    form.setFieldsValue({ tags: [...selectedTag, tag] });
   };
 
   const onDeleteTag = (tag: TagType) => {
-    console.log('Tag 삭제');
     const newSelectedTag = selectedTag.filter((item) => item.id !== tag.id);
+
+    setValue('tagIdList', [...selectedTag, tag]);
     setSelectedTag(newSelectedTag);
-    form.setFieldsValue({ tags: [...newSelectedTag] });
   };
 
   return (
@@ -52,7 +49,11 @@ function SelectTag() {
             key={tag.id}
             color={`#${tag.color}`}
             onClick={() => onAddTag(tag)}
-            style={{ cursor: 'pointer' }}
+            style={{
+              cursor: 'pointer',
+              minWidth: '120px',
+              marginBottom: '10px',
+            }}
           >
             {tag.name}
           </Tag>
@@ -66,6 +67,7 @@ export default SelectTag;
 
 const Block = styled.div`
   background: #fff;
+  border: 1px solid #e9ecf0;
 `;
 
 const SelectedBlock = styled.div`
