@@ -35,7 +35,18 @@ function MeetingCalendar() {
                         getClassifiedSchedule(schedules).map(
                             (classifiedSchedule) => (
                                 <div key={"schedule-step" + Number(Math.random())} className='schedule-step'>
-                                    {classifiedSchedule.map((schedule) => (<div key={schedule.id} className='schedule-box' style={{background: getRandomColor(schedule.id.slice(-6)), width: getPxByDate(schedule.end, schedule.start), left: 115 + getPxByDate(schedule.start, now)}}></div>))}
+                                    {classifiedSchedule.map((schedule) => (
+                                        <div key={schedule.id} className='schedule-box' style={{background: getRandomColor(schedule.id.slice(-6)), width: getPxByDate(schedule.end, schedule.start), left: 115 + getPxByDate(schedule.start, now)}}>
+                                            <div className='box-time'>
+                                                <p className='box-date'>{schedule.start.toISOString().split('T')[0]}</p>
+                                                <p className='box-period'>{schedule.start.getHours() % 12 + ":" + ("0" + schedule.start.getMinutes()).slice(-2) + ((schedule.start.getHours() >= 12) ? "pm" : "am")
+                                                + " to " + schedule.end.getHours() % 12 + ":" + ("0" + schedule.end.getMinutes()).slice(-2) + ((schedule.end.getHours() >= 12) ? "pm" : "am")
+                                                }</p>
+                                            </div>
+                                            <h1 className='box-summary'>{schedule.summary}</h1>
+                                            <p className='box-location'>{schedule.location != null ? schedule.location : ""}</p>
+                                        </div>
+                                    ))}
                                 </div>
                             )
                         )
@@ -51,7 +62,8 @@ const getTimes = (hour: number, minute: number) => {
     for (let i=0; i<39; i++) {
         times.push(("0" + hour).slice(-2) + ":" + ("0" + minute).slice(-2));
         if (minute == 30) {
-            hour = (hour + 1) % 24;
+            hour = (hour + 1) % 12;
+            if (hour == 0) hour = 12;
             minute = 0;
         } else {
             minute = 30;

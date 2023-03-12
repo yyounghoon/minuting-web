@@ -101,6 +101,51 @@ export const MeetingCalendarStyle = css`
 
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
         border-radius: 10px;
+
+        padding: 8px 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .box-time {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .box-date {
+        font-size: 14px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+
+    .box-period {
+        font-size: 14px;
+        color: #16A34A;
+        box-sizing: border-box;
+        padding: 0px 8px;
+        gap: 12px;
+        background: #DCFCE7;
+        border: 0.5px dashed #16A34A;
+        border-radius: 2px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+
+    .box-summary {
+        font-size: 16px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+
+    .box-location {
+        font-size: 14px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
     }
 
 `;
