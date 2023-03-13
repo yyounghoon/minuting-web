@@ -34,6 +34,7 @@ function SidebarItem({ spaceData }: SidebarItemProps) {
           const { id: boardId, name: boardName } = board;
           return (
             <div
+              key={boardId}
               css={css`
                 padding: 2rem;
                 font-size: 1.4rem;
