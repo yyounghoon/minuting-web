@@ -31,6 +31,13 @@ export interface Space {
   id: number;
   isPublic: boolean;
   name: string;
+  boardList: Board[];
+}
+
+export interface Board {
+  id: number;
+  name: string;
+  orderNum: number;
 }
 
 export interface Team {

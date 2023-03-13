@@ -41,20 +41,16 @@ function Sidebar() {
         className="public-space-modal"
       >
         <JoinSpace />
-        <CreateSpace onClick={onCreateSpace}>새 스페이스 생성 +</CreateSpace>
+        <CreateSpace onClick={onCreateSpace}>스페이스 만들기 </CreateSpace>
       </Modal>
       <SidebarGroup>
         {spaceList.map((space) => (
-          <SidebarItem
-            key={space.id}
-            spaceId={space.id}
-            spaceName={space.name}
-          />
+          <SidebarItem key={space.id} spaceData={space} />
         ))}
       </SidebarGroup>
       <ButtonBlock>
         <Button type="primary" block onClick={onModalOpen}>
-          새 그룹 생성
+          스페이스 +
         </Button>
       </ButtonBlock>
     </div>

@@ -1,25 +1,52 @@
 import { css } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { palette } from '../../styles/palette';
+import { Space } from '../../types';
+import useToggle from '../hooks/useToggle';
 
 type SidebarItemProps = {
-  spaceId: number;
-  spaceName: string;
+  spaceData: Space;
 };
 
-function SidebarItem({ spaceId, spaceName }: SidebarItemProps) {
+function SidebarItem({ spaceData }: SidebarItemProps) {
+  const { id: spaceId, name: spaceName, boardList } = spaceData;
   const router = useRouter();
-  const { spaceId: routerSpaceId } = router.query;
+  const { spaceId: routerSpaceId } = useRouter().query;
+  const { toggle, onToggle } = useToggle();
   const isSelected = spaceId === Number(routerSpaceId);
 
-  const getSpace = (spaceId: number) => {
-    router.push('/space/' + spaceId);
+  const goToMainSpace = () => {
+    router.push(`/space/${spaceId}`);
+    onToggle();
+  };
+
+  const goToBoard = (boardId: number) => {
+    router.push(`/space/${spaceId}/board/${boardId}`);
   };
 
   return (
-    <div css={ItemStyle(isSelected)} onClick={() => getSpace(spaceId)}>
-      {spaceName}
-    </div>
+    <>
+      <div css={ItemStyle(isSelected)} onClick={goToMainSpace}>
+        {spaceName}
+      </div>
+      {toggle &&
+        boardList.map((board) => {
+          const { id: boardId, name: boardName } = board;
+          return (
+            <div
+              css={css`
+                padding: 2rem;
+                font-size: 1.4rem;
+                background: ${palette.grey};
+                cursor: pointer;
+              `}
+              onClick={() => goToBoard(boardId)}
+            >
+              {boardName}
+            </div>
+          );
+        })}
+    </>
   );
 }
 
