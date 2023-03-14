@@ -36,12 +36,18 @@ function MeetingCalendar() {
                             (classifiedSchedule) => (
                                 <div key={"schedule-step" + Number(Math.random())} className='schedule-step'>
                                     {classifiedSchedule.map((schedule) => (
-                                        <div key={schedule.id} className='schedule-box' style={{background: getRandomColor(schedule.id.slice(-6)), width: getPxByDate(schedule.end, schedule.start), left: 115 + getPxByDate(schedule.start, now)}}>
+                                        <div key={schedule.id} className='schedule-box' style={{background: getRandomColor(schedule.id.slice(-6), schedule.start.getDay()), width: getPxByDate(schedule.end, schedule.start), left: 115 + getPxByDate(schedule.start, now)}}>
                                             <div className='box-time'>
-                                                <p className='box-date'>{schedule.start.toISOString().split('T')[0]}</p>
-                                                <p className='box-period'>{schedule.start.getHours() % 12 + ":" + ("0" + schedule.start.getMinutes()).slice(-2) + ((schedule.start.getHours() >= 12) ? "pm" : "am")
-                                                + " to " + schedule.end.getHours() % 12 + ":" + ("0" + schedule.end.getMinutes()).slice(-2) + ((schedule.end.getHours() >= 12) ? "pm" : "am")
-                                                }</p>
+                                                {
+                                                    getPxByDate(schedule.end, schedule.start) > 230 ? <p className='box-date'>{schedule.start.toISOString().split('T')[0]}</p> : <p className='box-date'></p>
+                                                }
+                                                {
+                                                    getPxByDate(schedule.end, schedule.start) > 165 &&    
+                                                        <p className='box-period'>{
+                                                            schedule.start.getHours() % 12 + ":" + ("0" + schedule.start.getMinutes()).slice(-2) + ((schedule.start.getHours() >= 12) ? "pm" : "am")
+                                                            + " to " + schedule.end.getHours() % 12 + ":" + ("0" + schedule.end.getMinutes()).slice(-2) + ((schedule.end.getHours() >= 12) ? "pm" : "am")
+                                                        }</p>
+                                                }
                                             </div>
                                             <h1 className='box-summary'>{schedule.summary}</h1>
                                             <p className='box-location'>{schedule.location != null ? schedule.location : ""}</p>
@@ -115,17 +121,11 @@ const pushClassifiedSchedule = (classifiedSchedules: UserCalendarType[][], index
     }
 }
 
-const getRandomColor = (id: string) => {
-    const letters1 = '234567';
-    const letters2 = '89ABCD';
+const colors = ['#AD1457', '#F4511E', '#E4C441', '#0B8043', '#3F51B5', '#8E24AA', '#D81B60', '#EF6C00', '#C0CA33', '#009688', '#7986CB',
+                '#D50000', '#F09300', '#7CB342', '#039BE5', '#B39DDB', '#616161', '#E67C73', '#F6BF26', '#33B679', '#4285F4', '#9E69AF', '#A79B8E'];
 
-    let color = '#';
-    for (let i=0; i<3; i++) {
-        color += letters2[id.charCodeAt(i)%6];
-        color += letters1[id.charCodeAt(i+1)%6];
-    }
-
-    return color;
+const getRandomColor = (id: string, num: number) => {
+    return colors[id.charCodeAt(num % 6) % colors.length];
 }
 
 const getPxByDate = (date1: Date, date2: Date) => {

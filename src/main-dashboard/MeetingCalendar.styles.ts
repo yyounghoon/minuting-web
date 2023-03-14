@@ -111,10 +111,12 @@ export const MeetingCalendarStyle = css`
     .box-time {
         display: flex;
         justify-content: space-between;
+        height: 22px;
     }
 
     .box-date {
         font-size: 14px;
+        color: white;
         overflow:hidden;
         text-overflow:ellipsis;
         white-space:nowrap;
@@ -135,6 +137,7 @@ export const MeetingCalendarStyle = css`
     }
 
     .box-summary {
+        color: white;
         font-size: 16px;
         overflow:hidden;
         text-overflow:ellipsis;
@@ -142,6 +145,7 @@ export const MeetingCalendarStyle = css`
     }
 
     .box-location {
+        color: white;
         font-size: 14px;
         overflow:hidden;
         text-overflow:ellipsis;
