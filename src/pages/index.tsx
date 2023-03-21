@@ -1,7 +1,10 @@
+import MeetingCalendar from "../main-dashboard/MeetingCalendar";
+
 function Home() {
   return (
     <div>
-      <h1>수정중</h1>
+      <h1>오늘 예정된 회의</h1>
+      <MeetingCalendar></MeetingCalendar>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { client } from '../api-config/client';
 import { GetMeInfoType } from '../types';
+import { UserCalendarResType } from '../types/user';
 
 export const getMeInfo = async () => {
   const response = await client.get<GetMeInfoType>('/me');
@@ -12,3 +13,8 @@ export const postLogin = async (code: string) => {
   );
   return response.data;
 };
+
+export const getUserCalendar = async (minDate: string, maxDate: string) => {
+  const response = await client.get<UserCalendarResType[]>(`/calendars?minDate=${minDate}&maxDate=${maxDate}`);
+  return response.data;
+}
